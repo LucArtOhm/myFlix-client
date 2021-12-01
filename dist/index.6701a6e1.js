@@ -467,20 +467,23 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 var _mainView = require("./components/main-view/main-view");
-var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
+// This statement indicates that I need to bundle './index.scss'
 var _indexScss = require("./index.scss");
+// This will become the main component
 class MyFlixApplication extends _reactDefault.default.Component {
     render() {
-        return(/*#__PURE__*/ _reactDefault.default.createElement(_mainViewDefault.default, {
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_mainView.MainView, {
             __source: {
                 fileName: "src/index.jsx",
-                lineNumber: 8
+                lineNumber: 12
             },
             __self: this
         }));
     }
 }
+// Finds the root of my app
 const container = document.getElementsByClassName('app-container')[0];
+// Tells React to render my app in the root DOM element
 _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication), container);
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);
@@ -21448,6 +21451,8 @@ $parcel$ReactRefreshHelpers$35bf.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView
+);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _movieCard = require("../movie-card/movie-card");
@@ -21507,7 +21512,6 @@ class MainView extends _reactDefault.default.Component {
         )));
     }
 }
-exports.default = MainView;
 
   $parcel$ReactRefreshHelpers$35bf.postlude(module);
 } finally {
@@ -21523,6 +21527,7 @@ $parcel$ReactRefreshHelpers$4249.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+//This is how I extract data within the MovieCard component
 parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
 );
 var _react = require("react");
@@ -21534,7 +21539,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "movie-card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 6
+                lineNumber: 7
             },
             __self: this
         }, "movie.Title"));
