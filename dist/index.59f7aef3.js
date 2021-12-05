@@ -23775,69 +23775,74 @@ parcelHelpers.export(exports, "MovieView", ()=>MovieView
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieView extends _reactDefault.default.Component {
+    componentDidMount() {
+        document.addEventListener('keypress', (event)=>{
+            console.log(event.key);
+        });
+    }
     render() {
         const { movie , onBackClick  } = this.props;
         return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-view",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 8
+                lineNumber: 15
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-poster",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 9
+                lineNumber: 16
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("img", {
             src: movie.ImagePath,
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 10
+                lineNumber: 17
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-title",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 12
+                lineNumber: 19
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 13
+                lineNumber: 20
             },
             __self: this
         }, "Title: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 14
+                lineNumber: 21
             },
             __self: this
         }, movie.Title, " ")), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-description",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 16
+                lineNumber: 23
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 17
+                lineNumber: 24
             },
             __self: this
         }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 18
+                lineNumber: 25
             },
             __self: this
         }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement("button", {
@@ -23846,7 +23851,7 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "Documents/Web Development /Backend/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 20
+                lineNumber: 27
             },
             __self: this
         }, "Back")));
