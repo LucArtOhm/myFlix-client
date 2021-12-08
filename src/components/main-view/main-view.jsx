@@ -13,7 +13,7 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null,
-      showRegistrationForm: false
+      showRegistrationForm: false,
     };
   }
 
@@ -51,6 +51,7 @@ export class MainView extends React.Component {
     e.preventDefault();
     this.setState({
       showRegistrationForm: !this.state.showRegistrationForm,
+      user: !this.state.user
     });
   }
 
@@ -64,7 +65,7 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className='main-view' />;
 
     // 
-    if (showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistration(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
+    if (!showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistered(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
 
     return (
       <div className='main-view'>
