@@ -21467,7 +21467,8 @@ class MainView extends _reactDefault.default.Component {
         this.state = {
             movies: [],
             selectedMovie: null,
-            user: null
+            user: null,
+            showRegistrationForm: false
         };
     }
     componentDidMount() {
@@ -21491,22 +21492,26 @@ class MainView extends _reactDefault.default.Component {
             user
         });
     }
+    onRegistered(user) {
+        console.log('Go to login page for authenticating');
+    }
     toggleRegisterView(e) {
         e.preventDefault();
         this.setState({
-            registered: !this.state.registered,
-            user: !this.state.user
+            showRegistrationForm: !this.state.showRegistrationForm
         });
     }
     render() {
-        const { movies , selectedMovie , user  } = this.state;
+        const { movies , selectedMovie , user , showRegistrationForm  } = this.state;
         // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView
         if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
             onLoggedIn: (user1)=>this.onLoggedIn(user1)
             ,
+            clickHandler: (e)=>this.toggleRegisterView(e)
+            ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 57
+                lineNumber: 61
             },
             __self: this
         }));
@@ -21515,19 +21520,19 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 60
+                lineNumber: 64
             },
             __self: this
         }));
         // 
-        if (!registered) return(/*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
-            onRegistered: (registered)=>this.onRegistered(registered)
+        if (showRegistrationForm) return(/*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
+            onRegistration: (user1)=>this.onRegistration(user1)
             ,
             clickHandler: (e)=>this.toggleRegisterView(e)
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 63
+                lineNumber: 67
             },
             __self: this
         }));
@@ -21535,7 +21540,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 66
+                lineNumber: 70
             },
             __self: this
         }, "//If the state of 'selectedMovie' is not null, that selected movie will be returned. Otherwise, all movies will be returned", selectedMovie ? /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -21545,7 +21550,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 70
+                lineNumber: 74
             },
             __self: this
         }) : movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -21556,7 +21561,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 72
+                    lineNumber: 76
                 },
                 __self: this
             })
@@ -23163,9 +23168,9 @@ MovieCard.propTypes = {
         Title: _propTypesDefault.default.string.isRequired,
         Description: _propTypesDefault.default.string.isRequired,
         ImagePath: _propTypesDefault.default.string.isRequired,
-        Featured: _propTypesDefault.default.bool.isRequired,
+        Featured: _propTypesDefault.default.bool,
         ReleaseYear: _propTypesDefault.default.number.isRequired,
-        Actors: _propTypesDefault.default.string.isRequired,
+        Actors: _propTypesDefault.default.array.isRequired,
         Genre: _propTypesDefault.default.shape({
             Name: _propTypesDefault.default.string.isRequired,
             Description: _propTypesDefault.default.string.isRequired
@@ -23173,8 +23178,8 @@ MovieCard.propTypes = {
         Director: _propTypesDefault.default.shape({
             Name: _propTypesDefault.default.string.isRequired,
             Bio: _propTypesDefault.default.string.isRequired,
-            Birth: _propTypesDefault.default.number.isRequired,
-            Death: _propTypesDefault.default.number.isRequired
+            Birth: _propTypesDefault.default.string.isRequired,
+            Death: _propTypesDefault.default.string.isRequired
         })
     }).isRequired,
     onMovieClick: _propTypesDefault.default.func.isRequired
@@ -24677,11 +24682,20 @@ function RegistrationView(props) {
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
-        onClick: (e)=>props.clickHandler(e)
+        type: "submit",
+        onClick: ()=>console.log('Submit form')
         ,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 28
+            lineNumber: 29
+        },
+        __self: this
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        onClick: ()=>props.clickHandler(e)
+        ,
+        __source: {
+            fileName: "src/components/registration-view/registration-view.jsx",
+            lineNumber: 30
         },
         __self: this
     }, "Sign In")));
@@ -24771,7 +24785,15 @@ function LoginView(props) {
             lineNumber: 26
         },
         __self: this
-    }, "Submit")));
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("button", {
+        onClick: (e)=>props.clickHandler(e)
+        ,
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 27
+        },
+        __self: this
+    }, "Go to Registration")));
 }
 LoginView.propTypes = {
     login: _propTypesDefault.default.shape({

@@ -12,7 +12,8 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       selectedMovie: null,
-      user: null
+      user: null,
+      showRegistrationForm: false
     };
   }
 
@@ -42,25 +43,28 @@ export class MainView extends React.Component {
     });
   }
 
+  onRegistered(user) {
+    console.log('Go to login page for authenticating')
+  }
+
   toggleRegisterView(e) {
     e.preventDefault();
     this.setState({
-      registered: !this.state.registered,
-      user: !this.state.user
+      showRegistrationForm: !this.state.showRegistrationForm,
     });
   }
 
   render() {
-    const { movies, selectedMovie, user } = this.state;
+    const { movies, selectedMovie, user, showRegistrationForm } = this.state;
 
     // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
 
     // Before the movies have been loaded
     if (movies.length === 0) return <div className='main-view' />;
 
     // 
-    if (!registered) return <RegistrationView onRegistered={registered => this.onRegistered(registered)} clickHandler={(e) => this.toggleRegisterView(e)} />;
+    if (showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistration(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
 
     return (
       <div className='main-view'>
