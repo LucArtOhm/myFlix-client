@@ -25,7 +25,8 @@ export function RegistrationView(props) {
                 Birthday:
                 <input type='text' value={birthday} onChange={e => setBirthday(e.target.value)} />
             </label>
-            <button onClick={(e) => props.clickHandler(e)}>Sign In</button>
+            <button type='submit' onClick={(e) => console.log('Submit Form')}>Submit</button>
+            <button onClick={(e) => props.clickHandler(e)}>Go to Sign In</button>
 
         </form>
     );
