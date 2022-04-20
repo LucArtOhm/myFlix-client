@@ -13,7 +13,7 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null,
-      showRegistrationForm: false,
+      showRegistrationForm: false, // this will help to toggle the registration view
     };
   }
 
@@ -44,8 +44,9 @@ export class MainView extends React.Component {
   }
 
   onRegistered(user) {
-    console.log('Go to login page for authenticating')
+    console.log("Go to login page for authenticating")
   }
+
 
   toggleRegisterView(e) {
     e.preventDefault();
@@ -65,12 +66,12 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className='main-view' />;
 
     // 
-    if (!showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistered(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
+    if (showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistered(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
 
     return (
       <div className='main-view'>
 
-        //If the state of 'selectedMovie' is not null, that selected movie will be returned. Otherwise, all movies will be returned
+
         {selectedMovie
           ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
           : movies.map(movie => (
