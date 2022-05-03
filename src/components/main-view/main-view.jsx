@@ -66,7 +66,7 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className='main-view' />;
 
     // 
-    if (showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistered(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
+    if (!showRegistrationForm) return <RegistrationView onRegistration={(user) => this.onRegistered(user)} clickHandler={(e) => this.toggleRegisterView(e)} />;
 
     return (
       <div className='main-view'>
